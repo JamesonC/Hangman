@@ -1,31 +1,41 @@
-// hwk hint: splice() method
-
 // Starting shows array
-var show = ["bloodline", "billions", "westworld", "veep", "deadwood"];
+var word = ["bloodline", "billions", "westworld", "veep", "deadwood"];
 
-const maxTries = 10;            // Maximum number of tries player has
-
-var guessedLetters = [];        // Stores the letters the user guessed
-var currentWordIndex;           // Index of the current word in the array
-var guessingWord = [];          // Word we build to match the current word
-var remainingGuesses = 0;       // How many tries the player has left
-var gameStarted = false;        // Flag to tell if the game has started
-var hasFinished = false;        // Flag for 'press any key to try again'     
-var wins = 0;                   // How many wins has the player racked up
+var guessedLetters = []; // Stores the letters the user guessed
+var currentWordIndex; // Index of the current word in the array
+var guessingWord = []; // Word we build to match the current word
+var remainingGuesses = 0; // How many tries the player has left
+var gameStarted = true; // Flag to tell if the game has started
+var hasFinished = false; // Flag for 'press any key to try again'     
+var wins = 0; // How many wins has the player racked up
+var maxGuesses = 10; // Max number of guesses a user receives
 
 // creates a random selection from show variable
-var randomShow = show[Math.floor(Math.random() * show.length)];
+var randomWord = word[Math.floor(Math.random() * word.length)];
 
 // set up answer array
-var answerArray = [];
-for (var i = 0; i < randomShow.length; i++) {
-    answerArray[i] = "_";
+for (var i = 0; i < randomWord.length; i++) {
+    console.log(guessingWord[i] = "_");
+}
+
+// makes underscores beneath "Current Word"
+var underScores = document.getElementById("currentWord");
+underScores.innerHTML = guessingWord;
+underScores.innerHTML = guessingWord.join(" ");
+
+
+if (gameStarted) {
+    var remainingGuesses = document.getElementById("remainingGuesses");
+    remainingGuesses.innerHTML = maxGuesses;
 }
 
 
-/* var el = document.getElementById("currentWord");
-    el.innerHTML = answerArray;
-    el.innerHTML = answerArray.join(" ");
+// function that listens for user input 
+/* document.onkeyup = function(event) {
+    var userChoice = event.key;
+} */
+
+/*
 
 var la = document.getElementById("totalWins");
     la.innerHTML = wins;
