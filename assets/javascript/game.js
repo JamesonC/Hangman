@@ -20,7 +20,7 @@ indexOfWord = word[Math.floor(Math.random() * word.length)];
 
 // displays exact number of "_"'s for indexOfWord
 for (var i = 0; i < indexOfWord.length; i++) {
-    console.log(guessingWord[i] = "_");
+    guessingWord[i] = "_";
 }
 
 // makes underscores for guessingWord characters
@@ -34,14 +34,11 @@ if (!hasFinished) {
 }
 
 // ** NOT WORKING ** function that listens/displays for user input 
-var gussedLetters = document.getElementById("guessedLetters");
+var guessedLetters = document.getElementById("guessedLetters");
 
 document.onkeyup = function(event) {
-    guessedLetters = event.key;
-    console.log(guessedLetters);
+    guessedLetters.innerHTML = event.key;
 };
-
-document.onkeyup();
 
 // function that resets the game after a win or loss
 function resetGame() {
