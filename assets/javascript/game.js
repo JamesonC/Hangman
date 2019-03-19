@@ -40,6 +40,38 @@ document.onkeyup = function (event) {
     guessedLetters.innerHTML = event.key;
 };
 
+userGuess();
+
+// function that executes user's letter guess
+
+function userGuess() {
+
+    document.onkeyup = function (event) {
+        guessedLetters.innerHTML = event.key;
+    };
+
+    if(guessedLetters.innerHTML != guessingWord[i]) {
+        guessedLetters.push;
+    } else {
+        console.log("Incorret!")
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // function that resets the game after a win or loss
 function resetGame() {
