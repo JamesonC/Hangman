@@ -15,10 +15,8 @@ var hasFinished = false;        // Flag for 'press any key to try again'
 var totalWins = document.getElementById("totalWins");
 totalWins.innerHTML = wins;
 
-
 // finds random indexed word from 'word' array
 indexOfWord = word[Math.floor(Math.random() * word.length)];
-
 
 // displays exact number of "_"'s for indexOfWord
 for (var i = 0; i < indexOfWord.length; i++) {
@@ -29,29 +27,26 @@ for (var i = 0; i < indexOfWord.length; i++) {
 var currentWordCharacters = document.getElementById("currentWord");
 currentWordCharacters.innerHTML = guessingWord.join(" ");
 
-// displays "Guesses Remaining at 10
+// displays "Guesses Remaining" at 10
 if (!hasFinished) {
     var remainingGuesses = document.getElementById("remainingGuesses");
     remainingGuesses.innerHTML = maxGuesses;
 }
 
-
-// **not working** function that listens for user input 
+// ** NOT WORKING ** function that listens/displays for user input 
 var gussedLetters = document.getElementById("guessedLetters");
 
 document.onkeyup = function(event) {
-    guessedLetters.innerHTML = event.key;
+    guessedLetters = event.key;
+    console.log(guessedLetters);
 };
 
-
-
-
-
+document.onkeyup();
 
 // function that resets the game after a win or loss
 function resetGame() {
     remainingGuesses = maxGuesses;
-    gameStarted = true;
+    hasFinished = true;
 
     indexOfWord = word[Math.floor(Math.random() * word.length)];
 
@@ -62,3 +57,5 @@ function resetGame() {
         guessingWord.push("_");
     }
 }
+
+
