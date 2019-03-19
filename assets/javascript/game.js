@@ -2,7 +2,7 @@
 var word = ["bloodline", "billions", "westworld", "veep", "deadwood"];
 
 var guessedLetters = []; // Stores the letters the user guessed
-var indexOfWord; // Indexed element of the current word in the array
+var selectedWord; // Indexed element of the current word in the array
 var guessingWord = []; // Word we build to match the current word
 var remainingGuesses = 0; // How many tries the player has left  
 var maxGuesses = 10; // Max number of guesses a user receives
@@ -15,11 +15,13 @@ var hasFinished = false; // Flag for 'press any key to try again'
 var totalWins = document.getElementById("totalWins");
 totalWins.innerHTML = wins;
 
+
 // finds random indexed word from 'word' array
-indexOfWord = word[Math.floor(Math.random() * word.length)];
+selectedWord = word[Math.floor(Math.random() * word.length)];
+
 
 // displays exact number of "_"'s for indexOfWord
-for (var i = 0; i < indexOfWord.length; i++) {
+for (var i = 0; i < selectedWord; i++) {
     guessingWord[i] = "_";
 }
 
@@ -27,37 +29,35 @@ for (var i = 0; i < indexOfWord.length; i++) {
 var currentWordCharacters = document.getElementById("currentWord");
 currentWordCharacters.innerHTML = guessingWord.join(" ");
 
+
 // displays "Guesses Remaining" at 10
 if (!hasFinished) {
     var remainingGuesses = document.getElementById("remainingGuesses");
     remainingGuesses.innerHTML = maxGuesses;
 }
 
+
 // function that listens/displays user key input 
 var guessedLetters = document.getElementById("guessedLetters");
 
 document.onkeyup = function (event) {
-    guessedLetters.innerHTML = event.key;
+    var key = event.key
+    guessedLetters.innerHTML = key;
+    userGuess(key)
 };
-
-userGuess();
 
 // function that executes user's letter guess
+var guessedLetters = [];
 
-function userGuess() {
+function userGuess(key) {
+    
+    if (selectedWord.indexOf(key) === -1) {
+        console.log("Incorrect Choice!");
 
-    document.onkeyup = function (event) {
-        guessedLetters.innerHTML = event.key;
-    };
-
-    if(guessedLetters.innerHTML != guessingWord[i]) {
-        guessedLetters.push;
     } else {
-        console.log("Incorret!")
+        console.log("You are correct!");
     }
 };
-
-
 
 
 
