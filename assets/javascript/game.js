@@ -1,14 +1,14 @@
 // Starting shows array
 var word = ["bloodline", "billions", "westworld", "veep", "deadwood"];
 
-var guessedLetters = [];        // Stores the letters the user guessed
-var indexOfWord;                // Indexed element of the current word in the array
-var guessingWord = [];          // Word we build to match the current word
-var remainingGuesses = 0;       // How many tries the player has left  
-var maxGuesses = 10;            // Max number of guesses a user receives
-var wins = 0;                   // How many wins has the player racked up
-var gameStarted = false;        // Flag to tell if the game has started
-var hasFinished = false;        // Flag for 'press any key to try again'   
+var guessedLetters = []; // Stores the letters the user guessed
+var indexOfWord; // Indexed element of the current word in the array
+var guessingWord = []; // Word we build to match the current word
+var remainingGuesses = 0; // How many tries the player has left  
+var maxGuesses = 10; // Max number of guesses a user receives
+var wins = 0; // How many wins has the player racked up
+var gameStarted = false; // Flag to tell if the game has started
+var hasFinished = false; // Flag for 'press any key to try again'   
 
 
 // displays "Wins" at 0 
@@ -33,12 +33,13 @@ if (!hasFinished) {
     remainingGuesses.innerHTML = maxGuesses;
 }
 
-// ** NOT WORKING ** function that listens/displays for user input 
+// function that listens/displays user key input 
 var guessedLetters = document.getElementById("guessedLetters");
 
-document.onkeyup = function(event) {
+document.onkeyup = function (event) {
     guessedLetters.innerHTML = event.key;
 };
+
 
 // function that resets the game after a win or loss
 function resetGame() {
@@ -54,5 +55,3 @@ function resetGame() {
         guessingWord.push("_");
     }
 }
-
-
