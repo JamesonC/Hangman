@@ -15,28 +15,23 @@ var hasFinished = false; // Flag for 'press any key to try again'
 var totalWins = document.getElementById("totalWins");
 totalWins.innerHTML = wins;
 
-
-// finds random indexed word from 'word' array
-var selectedWord = word[Math.floor(Math.random() * word.length)];
+// picks a random show
+var currentWord = word[Math.floor(Math.random() * word.length)];
 
 var dashes = [];
-
-// ** NOT WORKING ** displays exact number of "_"'s for selectedWord
-for (var i = 0; i < selectedWord.length; i++) {
+// finds exact # of (-dashes-) for currentWord
+for (var i = 0; i < currentWord.length; i++) {
     dashes[i] = "_";
 };
 
-
-// makes underscores selectedWord characters
+// displays dashes for currentWord
 var wordCharacters = document.getElementById("currentWord");
 wordCharacters.innerHTML = dashes.join(" ");
 
 
 // displays "Guesses Remaining" at 10
-if (!hasFinished) {
-    var remainingGuesses = document.getElementById("remainingGuesses");
-    remainingGuesses.innerHTML = maxGuesses;
-};
+var remainingGuesses = document.getElementById("remainingGuesses");
+remainingGuesses.innerHTML = maxGuesses;
 
 
 // function that listens/displays user key input 
@@ -45,20 +40,22 @@ var guessedLetters = document.getElementById("guessedLetters");
 document.onkeyup = function (event) {
     var letter = event.key
     guessedLetters.innerHTML = letter;
-    userGuess(letter)
+    evaluateGuess(letter)
 };
 
+// executes user's letter guess
+function evaluateGuess(key) {
 
-// function that executes user's letter guess
-var guessedLetters = [];
+    wrongLetters = [];
 
-function userGuess(key) {
+    if (currentWord.indexOf(key) === -1 && maxGuesses >= 0) {
 
-    if (selectedWord.indexOf(key) === -1) {
+        remainingGuesses.innerHTML = (maxGuesses--);
+        // LOG wrongLetters on screen
         console.log("Incorrect Choice!");
 
     } else {
-        dashes[selectedWord.indexOf(key)] = key;
+        dashes[currentWord.indexOf(key)] = key;
         wordCharacters.innerHTML = dashes.join(" ");
     }
 };
@@ -66,28 +63,17 @@ function userGuess(key) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 // function that resets the game after a win or loss
 function resetGame() {
     remainingGuesses = maxGuesses;
-    hasFinished = true;
+    hasStarted = fale;
 
-    indexOfWord = word[Math.floor(Math.random() * word.length)];
+    currentWord = word[Math.floor(Math.random() * word.length)];
 
     guessedLetters = [];
     guessingWord = [];
 
-    for (var i = 0; i < word[indexOfWord.length]; i++) {
-        guessingWord.push("_");
+    for (var i = 0; i < word[currentWord.length]; i++) {
+        dashes.push("_");
     }
 }
