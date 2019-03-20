@@ -9,6 +9,7 @@ var maxGuesses = 10; // Max number of guesses a user receives
 var wins = 0; // How many wins has the player racked up
 var gameStarted = false; // Flag to tell if the game has started
 var hasFinished = false; // Flag for 'press any key to try again'   
+var incorrectLetters = []
 
 
 // displays "Wins" at 0 
@@ -40,26 +41,29 @@ var guessedLetters = document.getElementById("guessedLetters");
 document.onkeyup = function (event) {
     var letter = event.key
     guessedLetters.innerHTML = letter;
-    
-        if(event.keyCode >= 65 && event.keyCode <= 90) {
-            evaluateGuess(letter);
-        }
+
+    if (event.keyCode >= 65 && event.keyCode <= 90) {
+        evaluateGuess(letter);
+    }
 };
 
 // executes user's letter guess
 function evaluateGuess(key) {
 
-    wrongLetters = [];
-
     if (currentWord.indexOf(key) === -1 && maxGuesses >= 0) {
 
         remainingGuesses.innerHTML = (maxGuesses--);
-        // LOG wrongLetters on screen
+
+        incorrectLetters.push(key)
+        guessedLetters.innerHTML = incorrectLetters;
         console.log("Incorrect Choice!");
 
     } else {
-        dashes[currentWord.indexOf(key)] = key;
-        wordCharacters.innerHTML = dashes.join(" ");
+        for (var i = 0; i < currentWord.length; i++){
+            if (key === currentWord[i]) {
+                dashes[i] = key;
+            }
+        } wordCharacters.innerHTML = dashes.join(" ");
     }
 };
 
@@ -73,6 +77,7 @@ function resetGame() {
 
     currentWord = word[Math.floor(Math.random() * word.length)];
 
+    incorrectLetters = [];
     guessedLetters = [];
     guessingWord = [];
 
