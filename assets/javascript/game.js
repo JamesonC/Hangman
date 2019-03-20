@@ -40,7 +40,10 @@ var guessedLetters = document.getElementById("guessedLetters");
 document.onkeyup = function (event) {
     var letter = event.key
     guessedLetters.innerHTML = letter;
-    evaluateGuess(letter)
+    
+        if(event.keyCode >= 65 && event.keyCode <= 90) {
+            evaluateGuess(letter);
+        }
 };
 
 // executes user's letter guess
