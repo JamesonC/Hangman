@@ -17,45 +17,49 @@ totalWins.innerHTML = wins;
 
 
 // finds random indexed word from 'word' array
-selectedWord = word[Math.floor(Math.random() * word.length)];
+var selectedWord = word[Math.floor(Math.random() * word.length)];
+
+var dashes = [];
+
+// ** NOT WORKING ** displays exact number of "_"'s for selectedWord
+for (var i = 0; i < selectedWord.length; i++) {
+    dashes[i] = "_";
+};
 
 
-// displays exact number of "_"'s for indexOfWord
-for (var i = 0; i < selectedWord; i++) {
-    guessingWord[i] = "_";
-}
-
-// makes underscores for guessingWord characters
-var currentWordCharacters = document.getElementById("currentWord");
-currentWordCharacters.innerHTML = guessingWord.join(" ");
+// makes underscores selectedWord characters
+var wordCharacters = document.getElementById("currentWord");
+wordCharacters.innerHTML = dashes.join(" ");
 
 
 // displays "Guesses Remaining" at 10
 if (!hasFinished) {
     var remainingGuesses = document.getElementById("remainingGuesses");
     remainingGuesses.innerHTML = maxGuesses;
-}
+};
 
 
 // function that listens/displays user key input 
 var guessedLetters = document.getElementById("guessedLetters");
 
 document.onkeyup = function (event) {
-    var key = event.key
-    guessedLetters.innerHTML = key;
-    userGuess(key)
+    var letter = event.key
+    guessedLetters.innerHTML = letter;
+    userGuess(letter)
 };
+
 
 // function that executes user's letter guess
 var guessedLetters = [];
 
 function userGuess(key) {
-    
+
     if (selectedWord.indexOf(key) === -1) {
         console.log("Incorrect Choice!");
 
     } else {
-        console.log("You are correct!");
+        dashes[selectedWord.indexOf(key)] = key;
+        wordCharacters.innerHTML = dashes.join(" ");
     }
 };
 
