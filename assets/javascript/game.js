@@ -70,13 +70,13 @@ function evaluateGuess(key) {
 
 
     }
-
+    checkWin();
 };
 
 
 function checkWin() {
     if (dashes.indexOf("_") === -1) {
-        wins++
+        totalWins.innerHTML = wins++
         resetGame();
     };
 }
