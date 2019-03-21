@@ -60,9 +60,6 @@ function evaluateGuess(key) {
         incorrectLetters.push(key) // captures key pressed and pushes key into incorrectLetters array
         guessedLetters.innerHTML = incorrectLetters;
 
-        checkWin();
-
-
     } else {
         for (var i = 0; i < currentWord.length; i++) {
             if (key === currentWord[i]) {
@@ -71,12 +68,14 @@ function evaluateGuess(key) {
         }
         wordCharacters.innerHTML = dashes.join(" ");
 
+
     }
+
 };
 
 
 function checkWin() {
-    if (remainingGuesses > 0 && dashes === -1) {
+    if (dashes.indexOf("_") === -1) {
         wins++
         resetGame();
     };
