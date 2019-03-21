@@ -1,15 +1,13 @@
 // Starting shows array
 var word = ["bloodline", "billions", "westworld", "veep", "deadwood"];
 
-var guessedLetters = []; // Stores the letters the user guessed
-var selectedWord; // Indexed element of the current word in the array
+var guessedLetters = []; // Stores letters the user guessed
 var guessingWord = []; // Word we build to match the current word
 var remainingGuesses = 0; // How many tries the player has left  
 var maxGuesses = 10; // Max number of guesses a user receives
 var wins = 0; // How many wins has the player racked up
-var gameStarted = false; // Flag to tell if the game has started
 var hasFinished = false; // Flag for 'press any key to try again'   
-var incorrectLetters = []
+var incorrectLetters = [] // Stores incorrect letters
 
 
 // displays "Wins" at 0 
@@ -35,15 +33,20 @@ var remainingGuesses = document.getElementById("remainingGuesses");
 remainingGuesses.innerHTML = maxGuesses;
 
 
+
 // function that listens/displays user key input 
 var guessedLetters = document.getElementById("guessedLetters");
 
 document.onkeyup = function (event) {
+
     var letter = event.key
     guessedLetters.innerHTML = letter;
 
     if (event.keyCode >= 65 && event.keyCode <= 90) {
         evaluateGuess(letter);
+
+    } else {
+        alert("That's not a letter!");
     }
 };
 
@@ -54,29 +57,37 @@ function evaluateGuess(key) {
 
         remainingGuesses.innerHTML = (maxGuesses--);
 
-        incorrectLetters.push(key)
+        incorrectLetters.push(key) // captures key pressed and pushes key into incorrectLetters array
         guessedLetters.innerHTML = incorrectLetters;
-        console.log("Incorrect Choice!");
+
+        checkWin();
+
 
     } else {
-        for (var i = 0; i < currentWord.length; i++){
+        for (var i = 0; i < currentWord.length; i++) {
             if (key === currentWord[i]) {
                 dashes[i] = key;
             }
-        } wordCharacters.innerHTML = dashes.join(" ");
+        }
+        wordCharacters.innerHTML = dashes.join(" ");
+
     }
 };
 
 
+function checkWin() {
+    if (remainingGuesses > 0 && dashes === -1) {
+        wins++
+        resetGame();
+    };
+}
 
 
 // function that resets the game after a win or loss
 function resetGame() {
+
     remainingGuesses = maxGuesses;
-    hasStarted = fale;
-
     currentWord = word[Math.floor(Math.random() * word.length)];
-
     incorrectLetters = [];
     guessedLetters = [];
     guessingWord = [];
@@ -84,4 +95,4 @@ function resetGame() {
     for (var i = 0; i < word[currentWord.length]; i++) {
         dashes.push("_");
     }
-}
+};
