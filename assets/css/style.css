@@ -1,23 +1,22 @@
 body {
     background-color: #eee;
     padding-top: 20px;
-    color: white;
-    /* background: url('../images/bgimage.jpg') no-repeat; */
+    font-family: Arial, Helvetica, sans-serif;
+    background: url('../imgs/background4.jpeg') no-repeat;
     background-size: cover;
 }
 
-.container { 
-    text-align: center;
+.nav-item {
+    text-decoration: none;
+    color: white;
 }
+
 
 h1,h2,h3,
 h4,h5,h6 {
     padding: 5px;
 }
-#title-image, #gameover-image, #youwin-image{ 
-    display: block;
-    margin: 0 auto;
-}
+
 
 #currentWord {
     letter-spacing: 10px;
@@ -26,11 +25,16 @@ h4,h5,h6 {
 #pressKeyTryAgain, 
 #gameover-image, 
 #youwin-image { display: none;}
-.gameplay-column {
-    padding-top: 20px;
-    border: 1px dashed black;
+.gameplay-column-right {
+    padding-top: 100px;
+    text-align: left;
+    margin-top: 20px;
+    min-height: 550px;
+}
+
+.gameplay-column-left {
+    padding-top: 100px;
     text-align: center;
     margin-top: 20px;
-    min-height: 500px;
-    background-color: rgba(255, 255, 255, .3);
+    min-height: 550px;
 }

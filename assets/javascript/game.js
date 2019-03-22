@@ -1,5 +1,5 @@
 // Starting shows array
-var word = ["algorithm", "analog", "app", "application", "array", "backup", "bandwidth", "binary", "boot", "broadband", "browser", "buffer", "bug", "byte", "cache", "captcha", "client", "command", "compile", "compress", "computer", "configure", "cookie", "cybercrime", "cyberspace", "hack", "hacker", "hardware", "host", "html", "hyperlink", "hypertext", "supercomputer", "surf", "syntax"];
+var word = ["blockchain", "bitcoin", "crypto", "microservices", "automation", "platform", "stealth", "ecosystem", "ideation", "leverage", "ugc", "bandwidth", "disrupt", "dogfood", "iterate", "sunset", "rockstar", "wizard", "ninja", "guru", "cloud", "agile"];
 
 var guessedLetters = []; // Stores letters the user guessed
 var guessingWord = []; // Word we build to match the current word
