@@ -33,7 +33,6 @@ var remainingGuesses = document.getElementById("remainingGuesses");
 remainingGuesses.innerHTML = maxGuesses;
 
 
-
 // function that listens/displays user key input 
 var guessedLetters = document.getElementById("guessedLetters");
 
@@ -64,34 +63,45 @@ function evaluateGuess(key) {
         for (var i = 0; i < currentWord.length; i++) {
             if (key === currentWord[i]) {
                 dashes[i] = key;
-            }
-        }
+            } 
+        } 
         wordCharacters.innerHTML = dashes.join(" ");
-
-
-    }
-    checkWin();
+    } checkWin()
 };
 
 
 function checkWin() {
+    console.log(dashes.indexOf("_") === -1)
     if (dashes.indexOf("_") === -1) {
-        totalWins.innerHTML = wins++
+        console.log("it got through")
+        wins++;
+        totalWins.innerHTML = wins;
         resetGame();
     };
-}
 
+}
 
 // function that resets the game after a win or loss
 function resetGame() {
-
+    console.log("in reset function")
     remainingGuesses = maxGuesses;
     currentWord = word[Math.floor(Math.random() * word.length)];
     incorrectLetters = [];
     guessedLetters = [];
     guessingWord = [];
-
-    for (var i = 0; i < word[currentWord.length]; i++) {
+    dashes = [];
+    
+    for (var i = 0; i < currentWord.length; i++) {
         dashes.push("_");
     }
+    // displays dashes for currentWord
+    var wordCharacters = document.getElementById("currentWord");
+    wordCharacters.innerHTML = dashes.join(" ");
+
+    // displays "Guesses Remaining" at 10
+    var remainingGuesses = document.getElementById("remainingGuesses");
+    remainingGuesses.innerHTML = maxGuesses;
+
+    // function that listens/displays user key input 
+    var guessedLetters = document.getElementById("guessedLetters");
 };
