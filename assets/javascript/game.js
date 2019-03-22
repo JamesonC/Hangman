@@ -1,57 +1,108 @@
 // Starting shows array
-var word = ["bloodline", "billions", "westworld", "veep", "deadwood"];
+var word = ["algorithm", "analog", "app", "application", "array", "backup", "bandwidth", "binary", "boot", "broadband", "browser", "buffer", "bug", "byte", "cache", "captcha", "client", "command", "compile", "compress", "computer", "configure", "cookie", "cybercrime", "cyberspace", "hack", "hacker", "hardware", "host", "html", "hyperlink", "hypertext", "supercomputer", "surf", "syntax"];
 
-var guessedLetters = []; // Stores the letters the user guessed
-var indexOfWord; // Indexed element of the current word in the array
+var guessedLetters = []; // Stores letters the user guessed
 var guessingWord = []; // Word we build to match the current word
 var remainingGuesses = 0; // How many tries the player has left  
 var maxGuesses = 10; // Max number of guesses a user receives
 var wins = 0; // How many wins has the player racked up
-var gameStarted = false; // Flag to tell if the game has started
-var hasFinished = false; // Flag for 'press any key to try again'   
+var incorrectLetters = [] // Stores incorrect letters
 
 
 // displays "Wins" at 0 
 var totalWins = document.getElementById("totalWins");
 totalWins.innerHTML = wins;
 
-// finds random indexed word from 'word' array
-indexOfWord = word[Math.floor(Math.random() * word.length)];
+// picks a random show
+var currentWord = word[Math.floor(Math.random() * word.length)];
 
-// displays exact number of "_"'s for indexOfWord
-for (var i = 0; i < indexOfWord.length; i++) {
-    guessingWord[i] = "_";
-}
+var dashes = [];
+// finds exact # of (-dashes-) for currentWord
+for (var i = 0; i < currentWord.length; i++) {
+    dashes[i] = "_";
+};
 
-// makes underscores for guessingWord characters
-var currentWordCharacters = document.getElementById("currentWord");
-currentWordCharacters.innerHTML = guessingWord.join(" ");
+// displays dashes for currentWord
+var wordCharacters = document.getElementById("currentWord");
+wordCharacters.innerHTML = dashes.join(" ");
+
 
 // displays "Guesses Remaining" at 10
-if (!hasFinished) {
-    var remainingGuesses = document.getElementById("remainingGuesses");
-    remainingGuesses.innerHTML = maxGuesses;
-}
+var remainingGuesses = document.getElementById("remainingGuesses");
+remainingGuesses.innerHTML = maxGuesses;
+
 
 // function that listens/displays user key input 
 var guessedLetters = document.getElementById("guessedLetters");
 
 document.onkeyup = function (event) {
-    guessedLetters.innerHTML = event.key;
+
+    var letter = event.key
+    guessedLetters.innerHTML = letter;
+
+    if (event.keyCode >= 65 && event.keyCode <= 90) {
+        evaluateGuess(letter);
+
+    } else {
+        alert("That's not a letter!");
+    }
 };
 
+// executes user's letter guess
+function evaluateGuess(key) {
+
+    if (currentWord.indexOf(key) === -1 && maxGuesses > 0) {
+
+        maxGuesses--
+        remainingGuesses.innerHTML = maxGuesses;
+
+        incorrectLetters.push(key) // captures key pressed and pushes key into incorrectLetters array
+        guessedLetters.innerHTML = incorrectLetters;
+
+    } else {
+        for (var i = 0; i < currentWord.length; i++) {
+            if (key === currentWord[i]) {
+                dashes[i] = key;
+            }
+        }
+        wordCharacters.innerHTML = dashes.join(" ");
+    }
+
+    checkWin()
+};
+
+function checkWin() {
+    console.log(dashes.indexOf("_") === -1)
+    if (dashes.indexOf("_") === -1) {
+        console.log("Check Win Function")
+        wins++;
+        totalWins.innerHTML = wins;
+        resetGame();
+    } else if (maxGuesses === 0) {
+        console.log("maxGuess Reset")
+        resetGame();
+    };
+
+};
 
 // function that resets the game after a win or loss
 function resetGame() {
-    remainingGuesses = maxGuesses;
-    hasFinished = true;
-
-    indexOfWord = word[Math.floor(Math.random() * word.length)];
-
-    guessedLetters = [];
+    console.log("In Reset Function")
+    currentWord = word[Math.floor(Math.random() * word.length)];
+    incorrectLetters = [];
     guessingWord = [];
+    dashes = [];
+    maxGuesses = 10;
 
-    for (var i = 0; i < word[indexOfWord.length]; i++) {
-        guessingWord.push("_");
+    for (var i = 0; i < currentWord.length; i++) {
+        dashes.push("_");
     }
-}
+    // displays dashes for currentWord
+    var wordCharacters = document.getElementById("currentWord");
+    wordCharacters.innerHTML = dashes.join(" ");
+
+    var remainingGuesses = document.getElementById("remainingGuesses");
+    remainingGuesses.innerHTML = maxGuesses;
+
+
+};
