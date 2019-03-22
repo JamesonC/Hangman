@@ -1,5 +1,5 @@
 // Starting shows array
-var word = ["bloodline", "billions", "westworld", "veep", "deadwood"];
+var word = ["algorithm", "analog", "app", "application", "array", "backup", "bandwidth", "binary", "boot", "broadband", "browser", "buffer", "bug", "byte", "cache", "captcha", "client", "command", "compile", "compress", "computer", "configure", "cookie", "cybercrime", "cyberspace", "hack", "hacker", "hardware", "host", "html", "hyperlink", "hypertext", "supercomputer", "surf", "syntax"];
 
 var guessedLetters = []; // Stores letters the user guessed
 var guessingWord = []; // Word we build to match the current word
@@ -71,7 +71,6 @@ function evaluateGuess(key) {
     checkWin()
 };
 
-
 function checkWin() {
     console.log(dashes.indexOf("_") === -1)
     if (dashes.indexOf("_") === -1) {
@@ -79,16 +78,18 @@ function checkWin() {
         wins++;
         totalWins.innerHTML = wins;
         resetGame();
+    } else if (maxGuesses === 0) {
+        console.log("maxGuess Reset")
+        resetGame();
     };
 
-}
+};
 
 // function that resets the game after a win or loss
 function resetGame() {
     console.log("In Reset Function")
     currentWord = word[Math.floor(Math.random() * word.length)];
     incorrectLetters = [];
-    guessedLetters = [];
     guessingWord = [];
     dashes = [];
     maxGuesses = 10;
@@ -102,5 +103,6 @@ function resetGame() {
 
     var remainingGuesses = document.getElementById("remainingGuesses");
     remainingGuesses.innerHTML = maxGuesses;
+
 
 };
