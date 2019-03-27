@@ -74,11 +74,12 @@ function evaluateGuess(key) {
 function checkWin() {
     console.log(dashes.indexOf("_") === -1)
     if (dashes.indexOf("_") === -1) {
-        console.log("Check Win Function")
+        swal("You Win!", "You must be in tech...", "success");
         wins++;
         totalWins.innerHTML = wins;
         resetGame();
     } else if (maxGuesses === 0) {
+        swal("You Lose!", "Let's try this again shall we...", "error");
         console.log("maxGuess Reset")
         resetGame();
     };
@@ -93,6 +94,7 @@ function resetGame() {
     guessingWord = [];
     dashes = [];
     maxGuesses = 10;
+    guessedLetters.innerHTML = [];
 
     for (var i = 0; i < currentWord.length; i++) {
         dashes.push("_");
