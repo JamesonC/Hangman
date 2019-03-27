@@ -38,13 +38,12 @@ var guessedLetters = document.getElementById("guessedLetters");
 document.onkeyup = function (event) {
 
     var letter = event.key
-    guessedLetters.innerHTML = letter;
 
     if (event.keyCode >= 65 && event.keyCode <= 90) {
         evaluateGuess(letter);
 
     } else {
-        alert("That's not a letter!");
+        swal("That's not a letter!");
     }
 };
 
@@ -57,7 +56,7 @@ function evaluateGuess(key) {
         remainingGuesses.innerHTML = maxGuesses;
 
         incorrectLetters.push(key) // captures key pressed and pushes key into incorrectLetters array
-        guessedLetters.innerHTML = incorrectLetters;
+        guessedLetters.innerHTML = incorrectLetters
 
     } else {
         for (var i = 0; i < currentWord.length; i++) {
