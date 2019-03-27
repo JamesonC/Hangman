@@ -38,13 +38,12 @@ var guessedLetters = document.getElementById("guessedLetters");
 document.onkeyup = function (event) {
 
     var letter = event.key
-    guessedLetters.innerHTML = letter;
 
     if (event.keyCode >= 65 && event.keyCode <= 90) {
         evaluateGuess(letter);
 
     } else {
-        alert("That's not a letter!");
+        swal("That's not a letter!");
     }
 };
 
@@ -57,7 +56,7 @@ function evaluateGuess(key) {
         remainingGuesses.innerHTML = maxGuesses;
 
         incorrectLetters.push(key) // captures key pressed and pushes key into incorrectLetters array
-        guessedLetters.innerHTML = incorrectLetters;
+        guessedLetters.innerHTML = incorrectLetters
 
     } else {
         for (var i = 0; i < currentWord.length; i++) {
@@ -74,11 +73,12 @@ function evaluateGuess(key) {
 function checkWin() {
     console.log(dashes.indexOf("_") === -1)
     if (dashes.indexOf("_") === -1) {
-        console.log("Check Win Function")
+        swal("You Win!", "You must be in tech...", "success");
         wins++;
         totalWins.innerHTML = wins;
         resetGame();
     } else if (maxGuesses === 0) {
+        swal("You Lose!", "Let's try this again shall we...", "error");
         console.log("maxGuess Reset")
         resetGame();
     };
@@ -93,6 +93,7 @@ function resetGame() {
     guessingWord = [];
     dashes = [];
     maxGuesses = 10;
+    guessedLetters.innerHTML = [];
 
     for (var i = 0; i < currentWord.length; i++) {
         dashes.push("_");

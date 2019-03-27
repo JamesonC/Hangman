@@ -12,6 +12,7 @@
     crossorigin="anonymous">
 
     <script src="./assets/javascript/game.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <title>Hangman</title>
 </head>
@@ -21,10 +22,7 @@
   <body>
     	<header id="header">
           <div class="container">
-            <div class="row align-items-center justify-content-between d-flex">
-              <div id="logo">
-                <a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
-              </div>
+            <div class="text-right">
               <nav id="nav-menu-container">
                 <ul class="nav-menu">
                   <a class="text-white" href="https://github.com/JamesonC/Word-Guess-Game"
@@ -39,8 +37,6 @@
     <div class="container">
       <div class="row">
           <div class="col-md-6 gameplay-column-left">
-              <img id="youwin-image" src="assets/images/you-win.png" alt="Winning Image" />
-              <img id="gameover-image" src="assets/images/gameover.png" alt="Game Over Image" />
               <h4>Technology <strong> Buzzwords</strong></h4>
               <h5>Press any key to start</h5>
               <h2 id="pressKeyTryAgain">Press Any Key to Try Again!</h2>
@@ -53,7 +49,7 @@
             <h3 id="currentWord"></h3>
             <h4>Guesses Remaining</h4>
             <h6 id="remainingGuesses"></h6>
-            <h4>Letters Guessed</h4>
+            <h4>Incorrect Letters</h4>
             <h3 id="guessedLetters"></h3>
           </div>
         </div>
