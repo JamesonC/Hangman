@@ -1,11 +1,8 @@
-# Hangman
+You have 10 total guesses to complete the selected 'Technology Buzzword'.
 
-This javascript project is a classic rendeition of Hangman. 
-
-'Technology Buzzwords' is the category. 
-You have 10 total guesses.
-
-Github Page: https://jamesonc.github.io/Hangman/
+- Vanilla Javascript
+- HTML/CSS
+- Bootstrap
 
 Good Luck,
 Jameson
